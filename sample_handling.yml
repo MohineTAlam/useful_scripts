@@ -1,4 +1,4 @@
-name: bucket_dowmload
+name: sample_handling
 channel:
 - conda-forge
 - bioconda
