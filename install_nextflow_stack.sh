@@ -32,7 +32,7 @@ sudo mv nextflow /usr/local/bin
 
 
 
-# echo "=== installing miniconda ==="
+echo "=== installing miniconda ==="
 
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 
@@ -40,6 +40,8 @@ bash Miniforge3-Linux-x86_64.sh
 
 source ~/.bashrc
 
+echo "=== install oci - follow prompts ==="
+bash -c "$(curl -L https://raw.githubusercontent.com/oracle/oci-cli/master/scripts/install/install.sh)"
 
 
 echo "=== done ==="
