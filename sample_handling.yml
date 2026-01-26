@@ -1,0 +1,8 @@
+name: bucket_dowmload
+channel:
+- conda-forge
+- bioconda
+- defaults
+dependencies:
+- boto3
+- pandas
