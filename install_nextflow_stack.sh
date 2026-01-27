@@ -9,10 +9,10 @@ sudo apt install -y \
         curl \
         wget \
         git \
-        ca-certificates \ # secure https connection
-        gnupg \ # cryptographic verification tool - veryify package signitatues e.g. docker
-        lsb-release \ # identifies linux distribution and version
-        openjdk-17-jre 
+        ca-certificates \
+        gnupg \
+        lsb-release \
+        openjdk-17-jre
 
 echo "=== install and enable docker ==="
 sudo apt install docker.io
