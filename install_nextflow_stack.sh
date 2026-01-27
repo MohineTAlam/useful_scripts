@@ -3,7 +3,7 @@
 # exit if any command fails
 set -euo pipefail
 
-echo "=== update system ==="
+echo "=== update system and install dependencies ==="
 sudo apt update
 sudo apt install -y \
         curl \
@@ -12,16 +12,13 @@ sudo apt install -y \
         ca-certificates \ # secure https connection
         gnupg \ # cryptographic verification tool - veryify package signitatues e.g. docker
         lsb-release \ # identifies linux distribution and version
-        openjdk-17-jre \
-        docker.io
+        openjdk-17-jre 
 
-echo "=== enable docker ==="
+echo "=== install and enable docker ==="
+sudo apt install docker.io
 sudo systemctl enable docker
 sudo systemctl start docker
-
-
 echo "=== add user to docker ==="
-
 sudo usermod -aG docker ubuntu
 
 
@@ -33,11 +30,8 @@ sudo mv nextflow /usr/local/bin
 
 
 echo "=== installing miniconda ==="
-
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-
 bash Miniforge3-Linux-x86_64.sh
-
 source ~/.bashrc
 
 echo "=== install oci - follow prompts ==="
