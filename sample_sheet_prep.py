@@ -60,12 +60,21 @@ else:
 	print("No changes made to capitalization")
 
 # change suffixes/extensions 
-extension = input("change extension/suffix? y/n")
+extension = input("edit extension/suffix? y/n")
 #prefix = input('change prefix? y/n')
 if extension == "y":
+	decision = input("change, remove or add extension? (c/r/a): ")
 	column = input("Enter column: ")
-	extension = input("Enter extension: ")
-	df[str(column)] = df[str(column)].apply(lambda x: x if not isinstance(x, str) or x.endswith(str(extension)) else x + str(extension) )
+	if decision == "a":
+		ext = input("Enter extension to add: ")
+		df[str(column)] = df[str(column)].apply(lambda x: x if not isinstance(x, str) or x.endswith(str(ext)) else x + str(ext) )
+	elif decision == "r":
+		ext = input("Enter extension to remove: ")
+		df[column] = df[column].apply(lambda x: x[:-len(ext)] if isinstance(x, str) and x.endswith(ext) else x)
+	elif decision == "c":
+		ext = input("Enter current extension: ")
+		new_ext = input("Enter new extension: ")
+		df[column] = df[column].apply(lambda x: x[:-len(ext)] + new_ext if isinstance(x, str) and x.endswith(ext) else x)
 else:
 	print("No changes made to extensions")
 
