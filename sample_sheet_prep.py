@@ -42,6 +42,27 @@ if remove_cols == "y":
 else:
 	print("No columns removed")
 
+# rename columns
+rename_cols = input("rename columns? y/n")
+if rename_cols == "y":
+	cols = input("Enter columns to rename in format old1:new1,old2:new2: ")
+	rename_dict = {}
+	for pair in cols.split(","):
+		old, new = pair.split(":")
+		rename_dict[old.strip()] = new.strip()
+	df = df.rename(columns=rename_dict)
+else:
+	print("No columns renamed")
+
+# add columns
+add_cols = input("add columns? y/n")
+if add_cols == "y":
+	cols = input("Enter new columns in format col1:val1,col2:val2: ")
+	for pair in cols.split(","):
+		col, val = pair.split(":")
+		df[col.strip()] = val.strip()
+else:
+	print("No columns added")
 # fill missing values
 fill_na = input("fill missing values? y/n")
 if fill_na == "y":
@@ -51,6 +72,15 @@ if fill_na == "y":
 else:
 	print("No missing values filled")
 
+# give list to fill missing values
+fill_na_list = input("fill missing values from list? y/n")
+if fill_na_list == "y":
+	column = input("Enter column: ")
+	values = input("Enter comma-separated list of values: ").split(",")
+	values = [v.strip() for v in values]
+	df[column] = df[column].fillna(pd.Series(values))
+else:
+	print("No missing values filled from list") 
 # capitalize entries
 capitalise = input("capitalise entries? y/n")
 if capitalise == "y":
