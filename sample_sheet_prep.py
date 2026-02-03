@@ -8,7 +8,7 @@ df = pd.read_csv(sys.argv[1])
 #df.head
 
 # data overview
-print("Data preview of your sample sheet:")
+print("Data preview of your sample sheet (please refer to README.md for more information):")
 print('#=============================#')
 print("Columns: ", df.columns.tolist())
 print('#=============================#')
@@ -27,6 +27,16 @@ if unexpected_columns:
 	print("Please remove or rename these columns before proceeding.")
 else:
 	print("All columns are valid")
+
+print('#=============================#')
+
+# check for duplicated sample names
+duplicated_samples = df['sample'][df['sample'].duplicated()].unique()
+if len(duplicated_samples) > 0:
+	print("!!! Duplicated sample names found !!!: ", duplicated_samples)
+	print("Please ensure all sample names are unique before proceeding.")
+else:
+	print("All sample names are unique")
 
 #=========================================#
 # user inputs edits
