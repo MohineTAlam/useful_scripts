@@ -118,5 +118,17 @@ if extension == "y":
 else:
 	print("No changes made to extensions")
 
+# change duplicated sample names
+change_dup = input("change duplicated sample names? y/n")
+if change_dup == "y":
+	duplicated_samples = df['sample'][df['sample'].duplicated()].unique()
+	for sample in duplicated_samples:
+		rows= df[df['sample'] == sample]
+		for i, row_idx in enumerate(rows.index):
+			df.at[row_idx, 'sample'] = f'{sample}_{i+1}'
+else:
+	print("No changes made to duplicated sample names")
+	
+# save cleaned sample sheet
 saveas = os.path.basename(sys.argv[1])
 df.to_csv(f'cleaned_{saveas}', index=False)
